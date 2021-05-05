@@ -1,39 +1,42 @@
-import { Link } from 'gatsby'
-import React from 'react'
-import Icon from './icons'
-import { cn } from '../lib/helpers'
+import * as React from "react"
+import PropTypes from "prop-types"
+import { Link } from "gatsby"
 
-import styles from './header.module.css'
-
-const Header = ({ onHideNav, onShowNav, showNav, siteTitle }) => (
-  <div className={styles.root}>
-    <div className={styles.wrapper}>
-      <h1 className={styles.branding}>
-        <Link to='/'>{siteTitle}</Link>
+const Header = ({ siteTitle }) => (
+  <header
+    style={{
+      background: `rebeccapurple`,
+      marginBottom: `1.45rem`,
+    }}
+  >
+    <div
+      style={{
+        margin: `0 auto`,
+        maxWidth: 960,
+        padding: `1.45rem 1.0875rem`,
+      }}
+    >
+      <h1 style={{ margin: 0 }}>
+        <Link
+          to="/"
+          style={{
+            color: `white`,
+            textDecoration: `none`,
+          }}
+        >
+          {siteTitle}
+        </Link>
       </h1>
-
-      <button className={styles.toggleNavButton} onClick={showNav ? onHideNav : onShowNav}>
-        <Icon symbol='hamburger' />
-      </button>
-
-      <nav className={cn(styles.nav, showNav && styles.showNav)}>
-        <ul>
-          <li>
-            <Link to='/about/'>About</Link>
-          </li>
-          <li>
-            <Link to='/projects/'>Projects</Link>
-          </li>
-          <li>
-            <Link to='/blog/'>Blog</Link>
-          </li>
-          <li>
-            <Link to='/contact/'>Contact</Link>
-          </li>
-        </ul>
-      </nav>
     </div>
-  </div>
+  </header>
 )
+
+Header.propTypes = {
+  siteTitle: PropTypes.string,
+}
+
+Header.defaultProps = {
+  siteTitle: ``,
+}
 
 export default Header
